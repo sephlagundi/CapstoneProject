@@ -13,6 +13,7 @@ namespace EMSwebapp.Controllers
 {
     // [Authorize(Roles = "Administrator, User" )]
     // [AllowAnonymous]
+    [Authorize]
     public class EmployeesController : Controller
     {
         private readonly ApplicationDbContext _context;

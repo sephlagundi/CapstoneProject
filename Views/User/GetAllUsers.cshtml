@@ -1,6 +1,7 @@
 ﻿@model List<ApplicationUser>
 
 
+
 @*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
@@ -25,6 +26,8 @@
         </tr>
     </thead>
     <tbody>
+
+
         @foreach (var user in Model)
         {
             <tr>
@@ -32,6 +35,7 @@
                 <td>@user.FirstName</td>
                 <td>@user.LastName</td>
                 <td>@user.Email</td>
+
                 <td></td>
                 <td><a class ="btn btn-info" asp-controller="User" asp-action="Details" asp-route-userId="@user.Id">View</a></td>
                 <td><a class="btn btn-info" asp-controller="User" asp-action="Update" asp-route-userId="@user.Id">Edit</a></td>

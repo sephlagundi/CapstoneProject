@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace EMSwebapp.VIewModels
+namespace EMSwebapp.ViewModels
 {
     public class LogInUserViewModel
     {

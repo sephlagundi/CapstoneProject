@@ -1,6 +1,5 @@
 ﻿using EMSwebapp.Models;
 using EMSwebapp.ViewModels;
-using EMSwebapp.VIewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -10,7 +9,7 @@ namespace EMSwebapp.Controllers
 { 
 
 
-    // [Authorize(Roles = "Administrator")]
+ [Authorize(Roles = "Administrator")]
 public class UserController : Controller
 {
     private UserManager<ApplicationUser> _userManager { get; }

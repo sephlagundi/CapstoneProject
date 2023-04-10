@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using EMSwebapp.Data;
 using EMSwebapp.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace EMSwebapp.Controllers
 {
+    [Authorize]
     public class DepartmentsController : Controller
     {
         private readonly ApplicationDbContext _context;

@@ -1,8 +1,8 @@
 ﻿using EMSwebapp.Models;
-using EMSwebapp.VIewModels;
+using EMSwebapp.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using NuGet.DependencyResolver;
+
 
 namespace EMSwebapp.Controllers
 {
