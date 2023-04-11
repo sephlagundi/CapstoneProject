@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace EMSwebapp.Controllers
 {
-    [Authorize]
+    /*[Authorize]*/
     public class DepartmentsController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -22,12 +22,31 @@ namespace EMSwebapp.Controllers
         }
 
         // GET: Departments
-        public async Task<IActionResult> Index()
+        /*        public async Task<IActionResult> Index()
+                {
+                      return _context.Departments != null ? 
+                                  View(await _context.Departments.ToListAsync()) :
+                                  Problem("Entity set 'ApplicationDbContext.Departments'  is null.");
+                }*/
+
+
+        public async Task<IActionResult> Index(string searchString)
         {
-              return _context.Departments != null ? 
-                          View(await _context.Departments.ToListAsync()) :
-                          Problem("Entity set 'ApplicationDbContext.Departments'  is null.");
+            var department = from d in _context.Departments
+                            select d;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                department = department.Where(d => d.Name.Contains(searchString));
+
+
+            }
+
+            return View(await department.ToListAsync());
         }
+
+
+
 
         // GET: Departments/Details/5
         public async Task<IActionResult> Details(int? id)

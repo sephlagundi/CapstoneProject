@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace EMSwebapp.Controllers
 {
-    [Authorize(Roles ="Administrator")]
+    /*[Authorize(Roles ="Administrator")]*/
     public class RoleController : Controller
     {
         // Used with model to work with
