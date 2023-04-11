@@ -3,6 +3,7 @@ using EMSwebapp.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Data;
 
 namespace EMSwebapp.Controllers
@@ -13,12 +14,24 @@ namespace EMSwebapp.Controllers
 public class UserController : Controller
 {
     private UserManager<ApplicationUser> _userManager { get; }
-    public UserController(UserManager<ApplicationUser> userManager)
+        public RoleManager<IdentityRole> _roleManager { get; }
+        public UserController(UserManager<ApplicationUser> userManager,
+        RoleManager<IdentityRole> roleManager)
     {
         _userManager = userManager;
-    }
-    // [AllowAnonymous]
-    public IActionResult GetAllUsers()
+            _roleManager = roleManager;
+        }
+
+        
+
+
+
+
+
+
+
+        // [AllowAnonymous]
+        public IActionResult GetAllUsers()
     {
         var userlist = _userManager.Users.ToList();
         return View(userlist);
@@ -87,5 +100,9 @@ public class UserController : Controller
 
         return RedirectToAction("GetAllUsers");
     }
-}
+
+
+
+
+    }
 }

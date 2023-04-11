@@ -1,7 +1,9 @@
-﻿using EMSwebapp.ViewModels;
+﻿using EMSwebapp.Models;
+using EMSwebapp.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace EMSwebapp.Controllers
 {
@@ -12,10 +14,13 @@ namespace EMSwebapp.Controllers
         // IdentityRole in Identity Framework
 
         public RoleManager<IdentityRole> _roleManager { get; }
+        private UserManager<ApplicationUser> _userManager { get; }
 
-        public RoleController(RoleManager<IdentityRole> roleManager) 
+        public RoleController(RoleManager<IdentityRole> roleManager, UserManager<ApplicationUser> userManager) 
         {
             _roleManager = roleManager;
+            _userManager = userManager;
+
         }
 
         [HttpGet]
@@ -97,6 +102,7 @@ namespace EMSwebapp.Controllers
             var rolelist = _roleManager.DeleteAsync(oldRole);
             return RedirectToAction(controllerName: "Role", actionName: "GetAllRoles"); // reload the getall page it self
         }
+
 
 
     }
