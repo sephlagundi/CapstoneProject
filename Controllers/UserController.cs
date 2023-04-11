@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration.UserSecrets;
 using System.Data;
 
 namespace EMSwebapp.Controllers
@@ -31,10 +32,28 @@ public class UserController : Controller
 
 
         // [AllowAnonymous]
-        public IActionResult GetAllUsers()
+        public async Task<IActionResult> GetAllUsersAsync()
     {
-        var userlist = _userManager.Users.ToList();
-        return View(userlist);
+            var userViewModel = new List<UserRoleViewModel>();
+            var userWithRole = _roleManager.Roles.ToList();
+
+            foreach(var role in userWithRole)
+            {
+                var userlist = await _userManager.GetUsersInRoleAsync(role.Name);
+                foreach (var user in userlist) 
+                {
+                    userViewModel.Add(new UserRoleViewModel
+                    {
+                        userId = user.Id,
+                        FirstName = user.FirstName,
+                        LastName = user.LastName,
+                        Email = user.Email,
+                        roleName = role.Name,
+                    });
+                }
+            }
+        
+        return View(userViewModel);
     }
     public IActionResult Details(string userId)
     {
