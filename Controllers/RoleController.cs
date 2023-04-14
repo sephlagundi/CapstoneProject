@@ -14,12 +14,12 @@ namespace EMSwebapp.Controllers
         // IdentityRole in Identity Framework
 
         public RoleManager<IdentityRole> _roleManager { get; }
-        private UserManager<ApplicationUser> _userManager { get; }
+        /*private UserManager<ApplicationUser> _userManager { get; }*/
 
         public RoleController(RoleManager<IdentityRole> roleManager, UserManager<ApplicationUser> userManager) 
         {
             _roleManager = roleManager;
-            _userManager = userManager;
+            /*_userManager = userManager;*/
 
         }
 
